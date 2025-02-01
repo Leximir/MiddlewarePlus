@@ -21,6 +21,13 @@ class WeatherSeeder extends Seeder
         ];
 
         foreach ($forecast as $city => $temperature){
+
+            $cityCheck = WeatherModel::where('city', $city)->exists();
+            if($cityCheck){
+                $this->command->getOutput()->error('Grad koji ste unijeli vec postoji u bazi !');
+                return;
+            }
+
             WeatherModel::create([
                 'city' => $city ,
                 'temperature' => $temperature

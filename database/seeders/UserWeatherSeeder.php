@@ -18,6 +18,14 @@ class UserWeatherSeeder extends Seeder
             $this->command->getOutput()->error('Niste unijeli ime grada');
         }
 
+        $found = WeatherModel::where('city', $city)->exists();
+
+        if($found)
+        {
+            $this->command->getOutput()->error('Grad koji ste unijeli vec postoji u bazi !');
+            die();
+        }
+
         $temperature = $this->command->getOutput()->ask('Unesite temperaturu !');
         if($temperature === null){
             $this->command->getOutput()->error('Niste unijeli temperaturu');

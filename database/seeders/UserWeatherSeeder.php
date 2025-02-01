@@ -23,7 +23,7 @@ class UserWeatherSeeder extends Seeder
         if($found)
         {
             $this->command->getOutput()->error('Grad koji ste unijeli vec postoji u bazi !');
-            die();
+            return;
         }
 
         $temperature = $this->command->getOutput()->ask('Unesite temperaturu !');

@@ -21,7 +21,7 @@ class ManualUserSeeder extends Seeder
         $usernameCheck = User::where('name', $username)->exists();
         if($usernameCheck){
             $this->command->getOutput()->error('Username koji ste unijeli vec postoji u bazi !');
-            die();
+            return;
         }
 
         $email = $this->command->getOutput()->ask('Unesite email !');
@@ -31,7 +31,7 @@ class ManualUserSeeder extends Seeder
         $emailCheck = User::where('email', $email)->exists();
         if($emailCheck){
             $this->command->getOutput()->error('Email koji ste unijeli vec postoji u bazi !');
-            die();
+            return;
         }
 
         $password = $this->command->getOutput()->ask('Unesite password ili ostavite default !' , 1234);

@@ -15,10 +15,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $amount = 500;
+
         $faker = Factory::create();
 
-        $this->command->getOutput()->progressStart(500);
-        for($i = 0; $i < 500; $i++){
+        $this->command->getOutput()->progressStart($amount);
+        for($i = 0; $i < $amount; $i++){
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email ,

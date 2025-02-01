@@ -24,14 +24,16 @@ class WeatherSeeder extends Seeder
 
             $cityCheck = WeatherModel::where('city', $city)->exists();
             if($cityCheck){
-                $this->command->getOutput()->error('Grad koji ste unijeli vec postoji u bazi !');
-                return;
+                $this->command->getOutput()->error("$city vec postoji u bazi !");
+                continue;
             }
 
             WeatherModel::create([
                 'city' => $city ,
                 'temperature' => $temperature
             ]);
+
+            $this->command->getOutput()->info("$city je unijet u bazu !");
         }
     }
 }

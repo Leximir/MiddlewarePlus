@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
     {
         $faker = Factory::create();
 
+        $this->command->getOutput()->progressStart(500);
         for($i = 0; $i < 500; $i++){
             User::create([
                 'name' => $faker->name,

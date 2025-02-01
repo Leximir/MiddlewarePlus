@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $amount = 500;
+        $amount = $this->command->getOutput()->ask("Koliko korisnika zelite da napravite ?" , 500);
 
         $faker = Factory::create();
 

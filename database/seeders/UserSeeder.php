@@ -24,6 +24,9 @@ class UserSeeder extends Seeder
                 'email' => $faker->email ,
                 'password' => Hash::make('123456') ,
             ]);
+
+            $this->command->getOutput()->progressAdvance();
         }
+        $this->command->getOutput()->progressFinish();
     }
 }

@@ -17,6 +17,8 @@ class UserSeeder extends Seeder
     {
         $amount = $this->command->getOutput()->ask("Koliko korisnika zelite da napravite ?" , 500);
 
+        $password = $this->command->getOutput()->ask("Koja lozinka bi trebala da bude" , 1234);
+
         $faker = Factory::create();
 
         $this->command->getOutput()->progressStart($amount);
@@ -24,7 +26,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email ,
-                'password' => Hash::make('123456') ,
+                'password' => Hash::make($password) ,
             ]);
 
             $this->command->getOutput()->progressAdvance();

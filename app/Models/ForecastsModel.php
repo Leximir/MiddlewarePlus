@@ -9,6 +9,6 @@ class ForecastsModel extends Model
     protected $table = 'forecasts';
 
     protected $fillable = [
-        'city_id' , 'temperature' , 'date'
+        'city_id', 'temperature', 'date'
     ];
 }

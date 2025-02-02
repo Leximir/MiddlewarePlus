@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\CitiesModel;
 use App\Models\ForecastsModel;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory;
@@ -28,8 +29,8 @@ class ForecastsSeeder extends Seeder
             for($i = 0; $i < 5; $i++){
                 ForecastsModel::create([
                     'city_id' => $id ,
-                    'temperature' => $faker->randomFloat(2,-10,40),
-                    'date' => $faker->date
+                    'temperature' => $faker->randomFloat(1,15,30),
+                    'date' => Carbon::now()->addDays(rand(1,30)) // Carbon je dobar za datume
                 ]);
                 $this->command->getOutput()->progressAdvance();
             }

@@ -3,12 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\CitiesModel;
-use App\Models\User;
 use App\Models\WeatherModel;
-use Faker\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class WeatherSeeder extends Seeder
 {

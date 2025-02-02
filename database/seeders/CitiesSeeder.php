@@ -3,11 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\CitiesModel;
-use App\Models\User;
 use Faker\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class CitiesSeeder extends Seeder
 {

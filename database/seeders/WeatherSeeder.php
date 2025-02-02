@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\CitiesModel;
+use App\Models\User;
 use App\Models\WeatherModel;
+use Faker\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class WeatherSeeder extends Seeder
 {
@@ -13,27 +17,20 @@ class WeatherSeeder extends Seeder
      */
     public function run(): void
     {
-        $forecast = [
-            'Beograd' => 22 ,
-            'Novi Sad' => 23 ,
-            'Sarajevo' => 24 ,
-            'Zagreb' => 26
-        ];
+        $city_name = $this->command->getOutput()->ask("Kojem gradu zelite da dodate trenutnu temperaturu ?");
 
-        foreach ($forecast as $city => $temperature){
+        $degree = $this->command->getOutput()->ask("Kolika je trenutna temperatura ?");
 
-            $cityCheck = WeatherModel::where('city', $city)->exists();
-            if($cityCheck){
-                $this->command->getOutput()->error("$city vec postoji u bazi !");
-                continue;
-            }
-
-            WeatherModel::create([
-                'city' => $city ,
-                'temperature' => $temperature
-            ]);
-
-            $this->command->getOutput()->info("$city je unijet u bazu !");
+        $city_id = CitiesModel::where('name' , $city_name)->pluck('id')->first();
+        if($city_id === null){
+            die('Grad koji ste unijeli ne postoji u bazi !');
         }
+
+        WeatherModel::create([
+            'city_id' => $city_id ,
+            'temperature' => $degree
+        ]);
+
+        $this->command->getOutput()->info("Uspjesno ste dodijelili temperaturu gradu '$city_name'");
     }
 }

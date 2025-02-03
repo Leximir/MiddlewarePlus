@@ -15,4 +15,7 @@ class WeatherController extends Controller
             'forecast' => $forecast
         ]);
     }
+    public function addCurrentWeather(){
+        return view('admin.add-current-weather');
+    }
 }

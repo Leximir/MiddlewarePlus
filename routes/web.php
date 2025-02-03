@@ -22,4 +22,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/forecast' , [WeatherController::class , 'index']);
 Route::get('/forecast/{city:name}' , [ForecastController::class , 'index']);
 
+Route::middleware(['auth'])->prefix('admin')->group(function() {
+    Route::get('/weather' , [WeatherController::class , 'addCurrentWeather']);
+});
+
 require __DIR__.'/auth.php';

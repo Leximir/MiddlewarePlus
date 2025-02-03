@@ -20,6 +20,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/forecast' , [WeatherController::class , 'index']);
-Route::get('/forecast/{city}' , [ForecastController::class , 'index']);
+Route::get('/forecast/{city:name}' , [ForecastController::class , 'index']);
 
 require __DIR__.'/auth.php';

@@ -4,6 +4,11 @@ namespace App\Http\Helpers;
 
 class ForecastsHelper
 {
+    const WEATHER_ICONS = [
+        'rainy' => 'fa-cloud-rain',
+        'snowy' => 'fa-snowflake',
+        'sunny' => 'fa-sun'
+    ];
     public static function getColorByTemperature($temperature)
     {
         if ($temperature <= 0){
@@ -16,5 +21,11 @@ class ForecastsHelper
             $color='red';
         }
         return $color;
+    }
+    public static function getIconByWeatherType($type){
+
+        $icon = self::WEATHER_ICONS[$type]; // WEATHER_ICONS['rainy] => 'fa-cloud-rain'
+
+        return $icon;
     }
 }

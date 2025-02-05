@@ -1,6 +1,8 @@
 @php use App\Http\Helpers\ForecastsHelper;use App\Models\CitiesModel;use App\Models\ForecastsModel; @endphp
 
 @extends('admin.layout')
+
+@section('content')
     <div class="container mt-3">
         <h1 class="mb-5">Kreiranje novog Forecasta</h1>
         <form action="{{ route('forecasts.update') }}" method="POST" class="d-flex">
@@ -46,9 +48,15 @@
                     <ul class="list-group mb-4">
                         @foreach($city->forecasts as $forecasts)
 
-                            @php $color=ForecastsHelper::getColorByTemperature($forecasts->temperature);@endphp
+                            @php
+                                $color=ForecastsHelper::getColorByTemperature($forecasts->temperature);
+                                $icon = ForecastsHelper::getIconByWeatherType($forecasts->weather_type)
+                            @endphp
 
-                            <li class="list-group-item">{{ $forecasts->date }} - <span style="color: {{ $color }}">{{ $forecasts->temperature }}</span></li>
+                            <li class="list-group-item">{{ $forecasts->date }} -
+                                <i class="fa-solid {{ $icon }}"></i>
+                                <span style="color: {{ $color }}">{{ $forecasts->temperature }}</span>
+                            </li>
 
                         @endforeach
                     </ul>
@@ -58,7 +66,6 @@
 
 
     </div>
-@section('content')
 @endsection
 
 

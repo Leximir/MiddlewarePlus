@@ -36,13 +36,7 @@ class AdminWeatherController extends Controller
             'date' => 'required|date_format:Y-m-d'
         ]);
 
-        ForecastsModel::create([
-            'city_id' => $request->get('city_id'),
-            'temperature' => $request->get('temperature'),
-            'weather_type' => $request->get('weather_type'),
-            'probability' => $request->get('probability'),
-            'date' => $request->get('date'),
-        ]);
+        ForecastsModel::create($request->all());
 
         return redirect()->back();
     }

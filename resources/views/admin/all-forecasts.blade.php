@@ -1,4 +1,4 @@
-@php use App\Models\CitiesModel;use App\Models\ForecastsModel; @endphp
+@php use App\Http\Helpers\ForecastsHelper;use App\Models\CitiesModel;use App\Models\ForecastsModel; @endphp
 <form action="{{ route('forecasts.update') }}" method="POST">
     {{ csrf_field() }}
     <select name="city_id" id="">
@@ -22,7 +22,9 @@
     <ul>
         @foreach($city->forecasts as $forecasts)
 
-            <li>{{ $forecasts->date }} - {{ $forecasts->temperature }}</li>
+            @php $color=ForecastsHelper::getColorByTemperature($forecasts->temperature);@endphp
+
+            <li>{{ $forecasts->date }} - <span style="color: {{ $color }}">{{ $forecasts->temperature }}</span></li>
 
         @endforeach
     </ul>

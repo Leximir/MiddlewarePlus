@@ -15,8 +15,6 @@ class ForecastsSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Factory::create();
-
         $cities = CitiesModel::all();
 
         foreach ($cities as $city){
@@ -27,18 +25,27 @@ class ForecastsSeeder extends Seeder
             $this->command->getOutput()->progressStart(5);
             for($i = 0; $i < 5; $i++){
 
-                $weatherType = ForecastsModel::WEATHERS[rand(0, 2)];
+                $weatherType = ForecastsModel::WEATHERS[rand(0, 3)];
 
                 $probability = null;
 
-                if($weatherType == 'rainy' || $weatherType == 'snowy')
+                if($weatherType == 'rainy' || $weatherType == 'snowy' || $weatherType == 'cloudy')
                 {
                     $probability = rand(1, 100);
                 }
 
+                $temperature = rand(-300, 400) / 10;
+                if($weatherType === 'cloudy'){
+                    $temperature = rand(-100, 150) / 10;
+                } else if($weatherType === 'snowy'){
+                    $temperature = rand(-300, 0) / 10;
+                } else if($weatherType === 'rainy'){
+                    $temperature = rand(0, 10) / 10;
+                }
+
                 ForecastsModel::create([
                     'city_id' => $id ,
-                    'temperature' => $faker->randomFloat(1,15,30),
+                    'temperature' => $temperature,
                     'date' => Carbon::now()->addDays(rand(1,30)), // Carbon je dobar za datume
                     'weather_type' => $weatherType ,
                     'probability' => $probability

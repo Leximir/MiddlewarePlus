@@ -13,7 +13,7 @@ class ForecastsModel extends Model
     ];
 
     const WEATHERS = [
-        'rainy' , 'sunny', 'snowy'
+        'rainy' , 'sunny', 'snowy', 'cloudy'
     ];
 
     public function city()

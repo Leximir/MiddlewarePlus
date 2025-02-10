@@ -7,7 +7,8 @@ class ForecastsHelper
     const WEATHER_ICONS = [
         'rainy' => 'fa-cloud-rain',
         'snowy' => 'fa-snowflake',
-        'sunny' => 'fa-sun'
+        'sunny' => 'fa-sun' ,
+        'cloudy' => 'fa-cloud'
     ];
     public static function getColorByTemperature($temperature)
     {

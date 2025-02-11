@@ -17,6 +17,10 @@ class ForecastController extends Controller
 
         $cities = CitiesModel::where('name' , 'LIKE' , "%$cityName%")->get();
 
+        if(count($cities) === 0){
+            return redirect()->back()->with('error', 'Nismo pronasli gradove koji su za vase kriterijume');
+        }
+
         return view('search_results', compact('cities'));
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="">
+    <form method="GET" action="{{ route('forecast.search') }}">
         <div>
             <input type="text" name="city" placeholder="Unesite ime grada">
         </div>

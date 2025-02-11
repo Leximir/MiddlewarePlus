@@ -21,7 +21,13 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/forecast' , [WeatherController::class , 'index']);
+
+Route::get('/forecast/search',
+    [ForecastController::class, 'search'])
+    ->name('forecast.search');
+
 Route::get('/forecast/{city:name}' , [ForecastController::class , 'index']);
+
 
 Route::middleware(['auth'])->prefix('admin')->group(function() {
     Route::get('/weather' , [WeatherController::class , 'addCurrentWeather']);

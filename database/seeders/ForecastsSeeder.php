@@ -67,7 +67,7 @@ class ForecastsSeeder extends Seeder
                 ForecastsModel::create([
                     'city_id' => $id ,
                     'temperature' => $temperature,
-                    'date' => Carbon::now()->addDays(rand(1,30)), // Carbon je dobar za datume
+                    'date' => Carbon::now()->addDays($i), // Carbon je dobar za datume
                     'weather_type' => $weatherType ,
                     'probability' => $probability
                 ]);

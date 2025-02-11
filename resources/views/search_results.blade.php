@@ -3,7 +3,7 @@
 @section('content')
 
     @foreach($cities as $city)
-        <p> {{ $city->name }}</p>
+        <p><a href="{{ route('forecast.permalink', ['city' => $city->name]) }}">{{ $city->name }}</a></p>
     @endforeach
 
 @endsection

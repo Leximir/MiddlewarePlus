@@ -42,4 +42,9 @@ Route::middleware(['auth' , AdminCheckMiddleware::class])->prefix('admin')->grou
         ->name('forecasts.update');
 });
 
+// User Cities
+
+Route::get('/user-cities/favourite/{city}' , [\App\Http\Controllers\UserCitiesController::class, 'favourite'])
+    ->name('city.favourite');
+
 require __DIR__.'/auth.php';

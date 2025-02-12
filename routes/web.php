@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminWeatherController;
 use App\Http\Controllers\ForecastController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeatherController;
+use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,7 +32,7 @@ Route::get('/forecast/{city:name}' ,
     ->name('forecast.permalink');
 
 
-Route::middleware(['auth'])->prefix('admin')->group(function() {
+Route::middleware(['auth' , AdminCheckMiddleware::class])->prefix('admin')->group(function() {
     Route::get('/weather' , [WeatherController::class , 'addCurrentWeather']);
     Route::post('/weather/update', [AdminWeatherController::class, 'update'])
         ->name('weather.update');

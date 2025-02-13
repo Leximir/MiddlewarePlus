@@ -17,8 +17,14 @@
             @endphp
 
             <p>
-                <a href="{{ route('city.favourite', ['city' => $city->id]) }}"><i
-                        class="fa-regular fa-heart btn btn-primary text-white"></i></a>
+                @if(in_array($city->id, $userFavourites))
+                    <a href="{{ route('city.unfavourite', ['city' => $city->id]) }}"><i
+                            class="fa-solid fa-trash btn btn-primary "></i></a>
+                @else
+                    <a href="{{ route('city.favourite', ['city' => $city->id]) }}"><i
+                            class="fa-regular fa-heart btn btn-primary text-white"></i></a>
+                @endif
+
                 <a class="btn btn-primary text-white me-4"
                    href="{{ route('forecast.permalink', ['city' => $city->name]) }}">
                     <i class="fa-solid {{$icon}}"></i> {{ $city->name }}

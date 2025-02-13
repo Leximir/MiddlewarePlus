@@ -46,5 +46,7 @@ Route::middleware(['auth' , AdminCheckMiddleware::class])->prefix('admin')->grou
 
 Route::get('/user-cities/favourite/{city}' , [\App\Http\Controllers\UserCitiesController::class, 'favourite'])
     ->name('city.favourite');
+Route::get('/user-cities/unfavourite/{city}' , [\App\Http\Controllers\UserCitiesController::class, 'unfavourite'])
+    ->name('city.unfavourite');
 
 require __DIR__.'/auth.php';

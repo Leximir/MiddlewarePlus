@@ -24,4 +24,20 @@ class UserCitiesController extends Controller
 
         return redirect()->back();
     }
+    public function unfavourite(Request $request, $city){
+        $user = Auth::user();
+
+        if($user === null){
+            return redirect()->back()->with(['error' => 'Morate biti ulogovani da bi ste izvadili grad iz favourite']);
+        }
+
+        $userFavourite = UserCitiesModel::where([
+            'city_id' => $city ,
+            'user_id' => $user->id
+        ]);
+
+        $userFavourite->delete();
+
+        return redirect()->back();
+    }
 }

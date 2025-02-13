@@ -7,8 +7,21 @@ use App\Http\Controllers\WeatherController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', function(){
+
+    $userFavourites = [];
+
+    $user = \Illuminate\Support\Facades\Auth::user();
+    if($user !== null){
+        $userFavourites = \App\Models\UserCitiesModel::where([
+            'user_id' => $user->id
+        ])->get();
+    }
+    return view('welcome', compact('userFavourites'));
 });
 
 Route::get('/dashboard', function () {

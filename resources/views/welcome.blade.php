@@ -16,4 +16,8 @@
         <button type="submit">Pronadji</button>
     </form>
 
+    @foreach($userFavourites as $userFavourite)
+        <p>{{ ($userFavourite->city->name) }}: {{ ($userFavourite->city->todaysForecast->temperature) }}</p>
+    @endforeach
+
 @endsection

@@ -10,4 +10,7 @@ class UserCitiesModel extends Model
     protected $fillable = [
         'user_id', 'city_id'
     ];
+    public function city(){
+        return $this->hasOne(CitiesModel::class, 'id', 'city_id');
+    }
 }

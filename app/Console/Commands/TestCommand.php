@@ -26,10 +26,10 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $url = 'https://reqres.in/api/create';
-        $response = Http::post($url , [
-            'name' => 'Lexa',
-            'job' => 'Smecar'
+        $response = Http::get('https://api.weatherapi.com/v1/current.json', [
+            'key' => 'b6874aea855542958f4191441251902',
+            'q' => 'London',
+            'aqi' => 'no'
         ]);
         dd($response->json());
     }

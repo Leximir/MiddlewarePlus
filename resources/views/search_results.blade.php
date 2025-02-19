@@ -1,4 +1,4 @@
-@php use Illuminate\Support\Facades\Session; @endphp
+@php use App\Http\Helpers\ForecastsHelper;use Illuminate\Support\Facades\Session; @endphp
 @extends('layout')
 
 @section('content')
@@ -13,7 +13,7 @@
         @foreach($cities as $city)
 
             @php
-                $icon = \App\Http\Helpers\ForecastsHelper::getIconByWeatherType($city->todaysForecast->weather_type);
+                $icon = ForecastsHelper::getIconByWeatherType($city->todaysForecast->weather_type);
             @endphp
 
             <p>

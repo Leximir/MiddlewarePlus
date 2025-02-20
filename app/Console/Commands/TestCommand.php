@@ -56,10 +56,12 @@ class TestCommand extends Command
             return;
         }
 
-        $forecastDate = $jsonResponse['forecast']['forecastday'][0]['date'];
-        $temperature = $jsonResponse['forecast']['forecastday'][0]['day']['avgtemp_c'];
-        $weatherType = $jsonResponse['forecast']['forecastday'][0]['day']['condition']['text'];
-        $probability = $jsonResponse['forecast']['forecastday'][0]['day']['daily_chance_of_rain'];
+        $forecastDay = $jsonResponse['forecast']['forecastday'][0];
+
+        $forecastDate = $forecastDay['date'];
+        $temperature = $forecastDay['day']['avgtemp_c'];
+        $weatherType = $forecastDay['day']['condition']['text'];
+        $probability = $forecastDay['day']['daily_chance_of_rain'];
 
         $forecast = [
             'city_id' => $dbCity->id,

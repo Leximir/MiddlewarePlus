@@ -42,7 +42,7 @@ class TestCommand extends Command
 
         if(isset($jsonResponse['error'])){
             $this->output->error($jsonResponse['error']['message']);
-            return;
+            die();
         }
         $dbCity = CitiesModel::where(['name' => $city])->first();
 
